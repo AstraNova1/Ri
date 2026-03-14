@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maaf Ririn</title>
+
+<style>
+
+*{
+box-sizing:border-box;
+}
+
+body{
+margin:0;
+font-family:'Poppins',sans-serif;
+background:linear-gradient(135deg,#ffd6e7,#ffeaf4);
+display:flex;
+align-items:center;
+justify-content:center;
+height:100vh;
+overflow:hidden;
+padding:20px;
+}
+
+/* card */
+
+.card{
+width:100%;
+max-width:420px;
+background:rgba(255,255,255,0.8);
+backdrop-filter:blur(10px);
+border-radius:25px;
+padding:30px 20px;
+text-align:center;
+box-shadow:0 10px 40px rgba(0,0,0,0.1);
+z-index:2;
+}
+
+h1{
+color:#ff4f8b;
+font-size:28px;
+margin-bottom:10px;
+}
+
+h2{
+font-size:22px;
+margin-top:20px;
+}
+
+p{
+font-size:16px;
+color:#6a4c5a;
+line-height:1.6;
+}
+
+button{
+width:100%;
+padding:14px;
+margin-top:12px;
+border:none;
+border-radius:25px;
+background:#ff7fab;
+color:white;
+font-size:17px;
+cursor:pointer;
+transition:.3s;
+}
+
+button:hover{
+transform:scale(1.05);
+background:#ff4f8b;
+}
+
+/* tombol engga */
+
+.noBtn{
+position:relative;
+}
+
+/* love background */
+
+.love{
+position:fixed;
+top:-20px;
+font-size:18px;
+animation:fall linear infinite;
+opacity:.8;
+}
+
+@keyframes fall{
+to{
+transform:translateY(110vh);
+}
+}
+
+/* confetti */
+
+.confetti{
+position:fixed;
+top:0;
+width:8px;
+height:8px;
+animation:confetti 3s linear forwards;
+}
+
+@keyframes confetti{
+to{
+transform:translateY(100vh) rotate(720deg);
+opacity:0;
+}
+}
+
+/* mobile extra */
+
+@media (max-width:480px){
+
+h1{
+font-size:24px;
+}
+
+p{
+font-size:15px;
+}
+
+button{
+font-size:16px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<audio autoplay loop>
+<source src="https://cdn.pixabay.com/download/audio/2023/03/21/audio_5c2cfd4a4a.mp3">
+</audio>
+
+<div class="card">
+
+<h1>Maaf ya Ririn...</h1>
+
+<p>
+Aku minta maaf udah ngatain kamu.<br>
+Aku benar-benar minta maaf dari hati.
+</p>
+
+<h2>Ririn mau maafin aku?</h2>
+
+<button onclick="yes()">Iya 💗</button>
+<button class="noBtn" onmouseover="run(this)">Enggak 😢</button>
+
+</div>
+
+<script>
+
+/* tombol kabur */
+
+function run(btn){
+btn.style.position="absolute"
+btn.style.left=Math.random()*250+"px"
+btn.style.top=Math.random()*250+"px"
+}
+
+/* jika klik iya */
+
+function yes(){
+
+confetti()
+
+document.querySelector(".card").innerHTML=`
+
+<h1>Makasih Ririn 💗</h1>
+
+<p>
+Aku janji bakal jadi lebih baik lagi.<br>
+Terima kasih udah kasih kesempatan.
+</p>
+
+<div style="font-size:40px">💗💗💗</div>
+
+`
+
+}
+
+/* confetti */
+
+function confetti(){
+
+for(let i=0;i<120;i++){
+
+let c=document.createElement("div")
+c.className="confetti"
+
+c.style.left=Math.random()*100+"vw"
+c.style.background=["#ff4f8b","#ff7fab","#ffd6e7","#ffffff"][Math.floor(Math.random()*4)]
+
+document.body.appendChild(c)
+
+setTimeout(()=>c.remove(),3000)
+
+}
+
+}
+
+/* love background */
+
+for(let i=0;i<35;i++){
+
+let love=document.createElement("div")
+love.className="love"
+love.innerHTML="💗"
+
+love.style.left=Math.random()*100+"vw"
+love.style.animationDuration=(5+Math.random()*5)+"s"
+
+document.body.appendChild(love)
+
+}
+
+</script>
+
+</body>
+</html>
